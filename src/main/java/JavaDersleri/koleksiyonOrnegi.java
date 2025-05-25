@@ -4,26 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class koleksiyonDenemesi {
+public class koleksiyonOrnegi {
     public static void main(String[] args) {
-
+        // Scanner nesnesi oluşturma
         Scanner scanner = new Scanner(System.in);
+        // HashMap oluşturma
         HashMap<String, String> kutuphane = new HashMap<>();
 
+        // Örnek kitapları ekleme
         kutuphane.put("Tutunamayanlar", "Oğuz Atay");
         kutuphane.put("Kürk Mantolu Madonna", "Sabahattin Ali");
         kutuphane.put("İnce Memed", "Yaşar Kemal");
 
-        System.out.println("1. Kitap Ekle :");
-        System.out.println("2. Kitap Ara :");
-        System.out.println("3. Kitapları Listele :");
-        System.out.println("4. Çıkış :");
-        System.out.print("Seçiminiz :");
+        // Menü gösterimi
+        System.out.println("1. Kitap Ekle");
+        System.out.println("2. Kitap Ara");
+        System.out.println("3. Kitapları Listele");
+        System.out.println("4. Çıkış");
+        System.out.print("Seçiminiz: ");
 
         int secim = scanner.nextInt();
+        scanner.nextLine(); // Buffer temizleme
 
         switch (secim) {
-
             case 1:
                 // Yeni kitap ekleme
                 System.out.print("Kitap adı: ");
@@ -35,31 +38,38 @@ public class koleksiyonDenemesi {
                 // HashMap'e yeni kitabı ekliyoruz
                 kutuphane.put(kitapAdi, yazar);
                 System.out.println("Kitap eklendi!");
-                break;
+                scanner.close();
+                return;
 
             case 2:
-                System.out.println("Aranacak Kitap Adı : ");
+                // Kitap arama
+                System.out.print("Aranacak Kitap Adı: ");
                 String arananKitap = scanner.nextLine();
 
                 if (kutuphane.containsKey(arananKitap)) {
-                    System.out.println("Yazar :" + kutuphane.get(arananKitap));
+                    System.out.println("Yazar: " + kutuphane.get(arananKitap));
                 } else {
                     System.out.println("Kitap Bulunamadı!");
                 }
-                break;
+                scanner.close();
+                return;
 
             case 3:
-                System.out.println("Kütüphanedeki Kitaplar :");
+                // Kitapları listeleme
+                System.out.println("\nKütüphanedeki Kitaplar:");
                 for (Map.Entry<String, String> kitap : kutuphane.entrySet()) {
-                    System.out.println("Kitap :" + kitap.getKey() + " - Yazar :" + kitap.getKey());
+                    System.out.println("Kitap: " + kitap.getKey() + " - Yazar: " + kitap.getValue());
                 }
-                break;
+                scanner.close();
+                return;
 
             case 4:
                 System.out.println("Program bitti.");
+                scanner.close();
+                return;
+
             default:
-                System.out.println("Geçersiz Seçim");
+                System.out.println("Geçersiz Seçim!");
         }
-        scanner.close();
     }
 }
